@@ -9,7 +9,8 @@ public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
         //Email
         RuleFor(temp => temp.Email).NotEmpty()
             .WithMessage("Email is required")
-            .EmailAddress().WithMessage("Invalid email address format");
+            .EmailAddress().WithMessage("Invalid email address format")
+            .Length(1,50).WithMessage("Person Name should be 1 to 50 characters long");
 
         //Password
         RuleFor(temp => temp.Password).NotEmpty()
@@ -20,8 +21,8 @@ public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
            .WithMessage("PersonName is required");
 
         //Gender
-        RuleFor(temp => temp.Gender).NotEmpty()
-          .WithMessage("Gender is required");
+        RuleFor(temp => temp.Gender).IsInEnum()
+          .WithMessage("Invalid Gender is options");
     }
 }
 
